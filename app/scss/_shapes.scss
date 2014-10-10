@@ -1,0 +1,38 @@
+@mixin shape() {
+  box-sizing: border-box;
+  @include flex-shrink(0);
+}
+
+@mixin square($size) {
+  @include shape();
+
+  width: $size;
+  height: $size;
+}
+
+@mixin rectangle($width, $height) {
+  @include shape();
+
+  @if (unitless($width) and unitless($height)) {
+    @warn "can't make rectangle with no width or height units";
+  } @else if (unitless($width) == false and unitless($height) == false) {
+    width: $width;
+    height: $height;
+  } @else if (unitless($height)) {
+    width: $width;
+    height: $width*(1/$height);
+  } @else {
+    width: $height*$width;
+    height: $height;
+  }
+}
+
+@mixin circle($size:0) {
+  @include shape();
+
+  @if $size != 0 {
+    width: $size;
+    height: $size;
+  }
+  border-radius: 100%;
+}

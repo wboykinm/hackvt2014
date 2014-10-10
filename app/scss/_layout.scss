@@ -1,0 +1,84 @@
+@import "components/bourbon/dist/bourbon";
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+[layout~="fullbleed"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0
+}
+
+[layout~="vertical"] {
+  @include display(flex);
+  @include flex-direction(column);
+}
+[layout~="horizontal"] {
+  @include display(flex);
+  @include flex-direction(row);
+}
+[layout~="block"] {
+  display: block;
+}
+
+[layout~="center"] {
+  @include align-items(center);
+}
+[layout~="scroll"] {
+  overflow: auto;
+}
+[layout~="wrap"] {
+  @include flex-wrap(wrap);
+}
+
+[layout~="flexible"] {
+  @include flex-grow(1);
+  @include flex-shrink(1);
+  & > * {
+    @include flex-shrink(0);
+  }
+}
+[layout~="fixed"] {
+  @include flex-grow(0);
+  @include flex-shrink(0);
+}
+
+[layout~="grow"] {
+  @include flex-grow(1);
+}
+[layout~="shrink"] {
+  @include flex-shrink(1);
+}
+
+@mixin vertical-divider($type, $value) {
+  #{$type}-bottom: $value;
+  &:last-child {
+    #{$type}-bottom: 0;
+  }
+}
+@mixin horizontal-divider($type, $value) {
+  #{$type}-right: $value;
+  &:last-child {
+    #{$type}-right: 0;
+  }
+}
+
+@mixin gridulate($property, $amount, $notLast) {
+  @if (index(("padding", "margin"), $property)) {
+    #{$property}: $amount;
+    &:not(:first-child) {
+      #{$property}-#{$notLast}: 0;
+    }
+  }
+}
+
+@mixin vertical($property, $amount) {
+  @include gridulate($property, $amount, "top");
+}
+@mixin horizontal($property, $amount) {
+  @include gridulate($property, $amount, "left");
+}
