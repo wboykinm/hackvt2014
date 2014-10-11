@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
-  <title>padLab</title>
+  <title>homeLab</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="content-type" content="charset=UTF8">
 
@@ -13,7 +13,7 @@
   <header id="header" layout="fixed vertical center">
     <div layout="horizontal center" class="header">
       <div layout="block fixed">
-        <h1 ng-click="showMain()" class="fadeIn" ng-class="{visible: view != 'welcome'}"><i class="fixed fa fa-bolt"></i>padLab {{ currentPage }}</h1>
+        <h1 ng-click="showMain()" class="fadeIn" ng-class="{visible: view != 'welcome'}"><i class="fixed fa fa-bolt"></i>homeLab {{ currentPage }}</h1>
       </div>
       <div layout="block grow"></div>
       <div layout="fixed horizontal" class="fadeIn" ng-class="{visible: view == 'dashboard'}">
@@ -25,7 +25,7 @@
   <section layout="vertical flexible center" class="welcome cards" ng-show="view == 'welcome'">
     <div class="card" ng-mouseup="signUp()" ng-class="{out:signingIn}">
       <i class="logo fa fa-bolt"></i>
-      <h3>Welcome to padLab</h3>
+      <h3>Welcome to homeLab</h3>
       <button class="button flat bordered">sign in</button>
     </div>
   </section>
