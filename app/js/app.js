@@ -7,7 +7,7 @@ angular.module('app', ['n3-line-chart'])
       now.setMinutes(now.getMinutes()+1);
       $scope.now = now;
       $scope.$apply();
-    }, 1000);
+    }, 5000);
 
     $scope.circuits = {
       dhw: 'Hot water heater',
