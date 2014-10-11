@@ -16,10 +16,14 @@
       </div>
       <div layout="block grow"></div>
       <div layout="fixed horizontal">
+        <button class="button ink" ng-click="fastForward()">Fast forward</button>
         <button class="button bordered" ng-click="showExperiment()">Experiment</button>
       </div>
     </div>
   </header>
+  <section layout="vertical flexible center" class="loading" ng-show="loading">
+    <h3>Loading...</h3>
+  </section>
   <section layout="vertical flexible center scroll" class="cards" ng-show="view == 'experiment'">
     <div class="card experiment">
       <header>
@@ -35,10 +39,10 @@
         <label>
           <span class="name">Price</span>
           <span class="inputArea">
-            <input type="text" class="textbox" name="name" ng-model="experiment.price" placeholder="$__.__">
+            <input type="text" class="textbox" name="price" ng-model="experiment.price" placeholder="$__.__">
           </span>
         </label>
-        <label>
+        <div class="label">
           <span class="name">Circuits affected</span>
           <span class="inputArea buttonList">
             <button type="button" class="button option"
@@ -48,19 +52,36 @@
               {{ circuit }}
             </button>
           </span>
-        </label>
+        </div>
         <div class="buttons" layout="horizontal">
           <div class="left" layout="block grow">
             <button class="button ink" ng-click="showMain()">Nevermind</button>
           </div>
           <div class="right" layout="block">
-            <button class="button">Start experiment</button>
+            <button class="button" ng-click="startExperiment()">Start experiment</button>
           </div>
         </div>
       </form>
     </div>
   </section>
-  <section layout="vertical flexible center scroll" class="cards" ng-show="view == 'main'">
+  <section layout="vertical flexible center scroll" class="cards" ng-show="view == 'main' && !loading">
+    <div class="card" ng-repeat="exp in experiments">
+      <header>
+        <h3>{{ exp.name }} experiment</h3>
+        <h4>{{ timeSince(exp.started) }}</h4>
+      </header>
+      <p ng-hide="experimentReady(exp)">
+        Looking for patterns, check back later
+      </p>
+      <p ng-show="experimentReady(exp)">
+        Your <span style="font-weight:normal">{{ humanCircuits(exp.circuits) }}</span> <span style="font-weight:normal">{{ exp.improvement * 100 | number }}%</span> less energy than usual.
+        You are saving <span style="font-weight:normal">{{ exp.savings | currency }}/month</span><br>
+        with an estimated payback period of <span style="font-weight:normal">{{ exp.payback }}</span>
+      </p>
+      <div class="lineChart currentUsage" ng-if="experimentReady(exp)">
+        <linechart data="todayUsage" options="exp.chartOptions" mode=""></linechart>
+      </div>
+    </div>
     <div class="card">
       <header>
         <h3>Current Usage</h3>
@@ -70,13 +91,13 @@
         <linechart data="currentUsage" options="currentUsageOptions" mode=""></linechart>
       </div>
     </div>
-    <div class="card">
+    <div class="card" ng-show="anomaly">
       <header>
         <h3>Usage Anomaly</h3>
         <h4>{{ anomaly.title }}</h4>
       </header>
       <p>
-        {{ anomaly.title }} load is much higher than usual<br>
+        {{ anomaly.title }} load is much higher than usual today<br>
         <span style="font-style:italic">Did you leave a window open?</span>
       </p>
       <div class="lineChart">

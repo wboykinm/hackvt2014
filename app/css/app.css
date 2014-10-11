@@ -354,6 +354,9 @@ body {
       border-color: white;
       color: white; }
 
+.loading {
+  padding-top: 6rem; }
+
 .cards {
   background: #f9f9f9; }
   .cards .card {
@@ -390,7 +393,7 @@ body {
       display: none; }
     .cards .lineChart .legendItem path {
       display: none; }
-  .cards form label {
+  .cards form label, .cards form .label {
     display: -webkit-box;
     display: -moz-box;
     display: box;
@@ -408,9 +411,9 @@ body {
     -o-align-items: center;
     align-items: center;
     -ms-flex-align: center; }
-    .cards form label > .name {
+    .cards form label > .name, .cards form .label > .name {
       width: 25%; }
-    .cards form label > .name, .cards form label input {
+    .cards form label > .name, .cards form label input, .cards form .label > .name, .cards form .label input {
       font-size: 1.77689rem;
       line-height: 2.36859rem;
       -webkit-flex-shrink: 0;

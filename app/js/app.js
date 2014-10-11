@@ -1,6 +1,6 @@
 angular.module('app', ['n3-line-chart'])
 
-  .controller('main', function($scope, $http){
+  .controller('main', function($scope, $http, $window){
     $scope.now = new Date('7/23/2012 12:10');
     setInterval(function(){
       var now = new Date($scope.now);
@@ -44,6 +44,7 @@ angular.module('app', ['n3-line-chart'])
       },
       series: [{
         y: 'main',
+        label: 'Entire house',
         thickness: '3px',
         drawDots: false
       }]
@@ -75,35 +76,43 @@ angular.module('app', ['n3-line-chart'])
         row.date_time = new Date(row.date_time);
       });
       $scope.todayUsage = data.map(function(row){
+        row.previous_hp = row.average_hp/7;
+        row.new_hp = row.outlet1;
         row.average_hp /= 3;
         return row;
       });
     });
 
-    $scope.anomaly = {
-      title: 'Heat pump',
-      chartOptions: {
-        lineMode: 'basis',
-        tooltip: {mode: "scrubber"},
-        axes: {
-          x: {
-            key: 'date_time',
-            type: 'date'
+    $scope.$watch('now', function(now){
+      if (now < new Date('7/25/2012')) {
+        $scope.anomaly = {
+          title: 'Heat pump',
+          chartOptions: {
+            lineMode: 'basis',
+            tooltip: {mode: "scrubber"},
+            axes: {
+              x: {
+                key: 'date_time',
+                type: 'date'
+              }
+            },
+            series: [{
+              y: 'hp',
+              thickness: '3px',
+              drawDots: false,
+              label: 'Current usage'
+            }, {
+              y: 'average_hp',
+              thickness: '1px',
+              drawDots: false,
+              label: 'Typical usage'
+            }]
           }
-        },
-        series: [{
-          y: 'hp',
-          thickness: '3px',
-          drawDots: false,
-          label: 'Current usage'
-        }, {
-          y: 'average_hp',
-          thickness: '1px',
-          drawDots: false,
-          label: 'Typical usage'
-        }]
+        };
+      } else {
+        $scope.anomaly = false;
       }
-    };
+    });
 
     $scope.upgrade = {
       title: 'Lighting',
@@ -201,6 +210,7 @@ angular.module('app', ['n3-line-chart'])
       price: '',
       circuits: {}
     };
+    $scope.experiments = [];
     $scope.filteredCircuits = $scope.circuits;
     $scope.showExperiment = function(){
       $scope.view = 'experiment';
@@ -247,5 +257,89 @@ angular.module('app', ['n3-line-chart'])
       } else {
         $scope.experiment.circuits[circuit] = true;
       }
+    };
+
+    var calcSavings = function(exp){
+      exp.previousUsage = 453;
+      var randFactor = 20/((($scope.now - exp.started) / 1000) / (60 * 60 * 24 * 7));
+      exp.ourUsage = 368.039-randFactor+(Math.random()*randFactor*2);
+      exp.improvement = 1-(exp.ourUsage/exp.previousUsage);
+      exp.savings = (exp.previousUsage-exp.ourUsage)*0.11;
+      exp.payback = Math.ceil((exp.price.replace(/[^0-9]/g, '')*1) / exp.savings)+' months';
+
+      exp.chartOptions = {
+        lineMode: 'basis',
+        tooltip: {mode: "scrubber"},
+        axes: {
+          x: {
+            key: 'date_time',
+            type: 'date'
+          }
+        },
+        series: [{
+          y: 'new_hp',
+          thickness: '3px',
+          drawDots: false,
+          label: 'Experiment usage'
+        }, {
+          y: 'previous_hp',
+          thickness: '1px',
+          drawDots: false,
+          label: 'Previous usage'
+        }]
+      };
+    };
+
+    $scope.startExperiment = function(){
+      $scope.experiment.started = $scope.now;
+      calcSavings($scope.experiment);
+      $scope.experiments.push($scope.experiment);
+      $scope.showMain();
+    };
+
+    $scope.experimentReady = function(exp){
+      return ($scope.timeSince(exp.started) != 'just now');
+    };
+    $scope.humanCircuits = function(list){
+      var out = [];
+      for (var key in list) {
+        out.push(key);
+      }
+      out = out.map(function(key){
+        return $scope.circuits[key];
+      });
+      if (out.length > 1) {
+        return out.slice(0, -1).join(', ')+' and '+out.slice(-1)+' have used';
+      } else {
+        return out[0]+' '+((out[0][out[0].length-1] == 's') ? 'have' : 'has')+' used';
+      }
+    };
+
+    $scope.timeSince = function(time){
+      var difference = ($scope.now - time) / 1000;
+      if (difference < 60*60) {
+        return 'just now';
+      }
+      if (difference < 60 * 60 * 24) {
+        return 'today';
+      }
+      return Math.floor(difference / (60 * 60 * 24))+' days';
+    };
+
+    $scope.fastForward = function(){
+      $scope.loading = true;
+      setTimeout(function(){
+        $scope.loading = false;
+        $scope.$apply();
+        //setTimeout(function(){
+          window.dispatchEvent(new Event('resize'));
+        //}, 1000);
+      }, 1000+(Math.random()*1000));
+      var now = new Date($scope.now);
+      now.setDate(now.getDate()+7);
+      $scope.now = now;
+      $scope.experiments.forEach(function(exp){
+        calcSavings(exp);
+      });
     };
   });
