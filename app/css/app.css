@@ -346,7 +346,8 @@ body {
       -ms-align-items: center;
       -o-align-items: center;
       align-items: center;
-      -ms-flex-align: center; }
+      -ms-flex-align: center;
+      cursor: pointer; }
   #header .button {
     margin-right: 1rem;
     background: white;
