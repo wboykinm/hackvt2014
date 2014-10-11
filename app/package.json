@@ -1,0 +1,11 @@
+{
+  "name": "hackvt",
+  "description": "wot m8",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.9.7",
+    "knex": "^0.7.3",
+    "pg": "^3.5.0"
+  }
+}
