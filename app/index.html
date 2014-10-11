@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <title>My Energy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="content-type" content="charset=UTF8">
+
+  <link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+<body layout="vertical fullbleed">
+
+  <header layout="fixed vertical center">
+    <div layout="horizontal center" class="header">
+      <div layout="block fixed">
+        <h1>My Energy</h1>
+      </div>
+      <div layout="block grow"></div>
+      <div layout="fixed horizontal">
+        <button class="button bordered">button</button>
+      </div>
+    </div>
+  </header>
+  <section layout="vertical flexible center scroll" class="cards">
+    <div class="card">
+      <h3>Current usage</h3>
+      <p>you - 452w</p>
+      <p>your usual - </p>
+      <p>your neighbors - 636w</p>
+    </div>
+    <div class="card">
+      <h3>Solar generation</h3>
+      <p>you - 800w</p>
+      <p>your neighborhood - 12kw</p>
+      <p>your town - 142kw</p>
+    </div>
+    <div class="card">
+      <h3>Rate</h3>
+      <p>You are getting paid 6 cents an hour</p>
+      <p>Your neighbors are paying 8 cents an hour</p>
+      <p></p>
+    </div>
+  </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+@import "components/bourbon/dist/bourbon";
+@import "depth";
+
+@mixin button($padding, $highlight, $contrast:#fff) {
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  position: relative;
+
+  cursor: pointer;
+  font: inherit;
+  font-weight: 400;
+
+  padding: $padding;
+  background: $highlight;
+  color: $contrast;
+
+  @include clickable-depth(3, 2);
+
+  &.flat, &.flat:hover, &.flat:active {
+    @include depth(0);
+  }
+
+  &.option, &.bordered, &.ink {
+    background: transparent;
+  }
+
+  &.option, &.bordered {
+    border: 1.4px solid;
+    font-weight: 400;
+    border-color: fade-out($highlight, 0.5);
+    color: fade-out($highlight, 0.5);
+  }
+  &.ink, &.option.selected, &.bordered {
+    border-color: $highlight;
+    color: $highlight;
+  }
+}
+
+@mixin button-color($highlight, $contrast:#fff) {
+  background: $highlight;
+  color: $contrast;
+
+  &.option, &.bordered, &.ink {
+    background: transparent;
+  }
+
+  &.option, &.bordered {
+    border-color: fade-out($highlight, 0.5);
+    color: fade-out($highlight, 0.5);
+  }
+  &.ink, &.option.selected, &.bordered {
+    border-color: $highlight;
+    color: $highlight;
+  }
+}

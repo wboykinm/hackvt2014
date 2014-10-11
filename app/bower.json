@@ -1,0 +1,19 @@
+{
+  "name": "hackvt",
+  "version": "0.0.0",
+  "authors": [
+    "Tristan Davies <github@tristan.io>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bourbon": "~4.0.2"
+  }
+}

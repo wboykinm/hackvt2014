@@ -1,0 +1,48 @@
+@import "https://fonts.googleapis.com/css?family=Cousine:400,700,700italic,400italic|Libre+Baskerville:400,700,400italic|Fira+Sans:300italic,300,400italic,400,500italic,500,700italic,700";
+@import "components/bourbon/dist/_bourbon.scss";
+
+@mixin perfect-fourth($size) {
+  font-size: modular-scale(1rem, $size, 1.333);
+  line-height: modular-scale(1rem, $size+1, 1.333);
+}
+
+@mixin paragraph($size:0) {
+  @include perfect-fourth($size);
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 300;
+}
+@mixin heading($size:0) {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  @if $size != 0 {
+    @include perfect-fourth($size);
+  }
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  @include paragraph();
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @include heading();
+}
+
+h1, h2 { @include perfect-fourth(3) }
+h3, h4 { @include perfect-fourth(4) }
+h5, h6 { @include perfect-fourth(2) }
+h2, h4, h6 { font-style: italic }
+
+p {
+  @include paragraph(3);
+  margin: 1em 0;
+}
+
+pre, code {
+  font-family: Cousine, monospace;
+  @include perfect-fourth(1);
+  display: block;
+}

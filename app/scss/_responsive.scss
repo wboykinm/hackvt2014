@@ -1,0 +1,8 @@
+@mixin responsive-document($pixel:800px, $percent:62%) {
+  width: $percent;
+  min-width: $pixel;
+  @media (max-width: $pixel) {
+    width: 100%;
+    min-width: 0;
+  }
+}

@@ -1,0 +1,61 @@
+@import "components/bourbon/dist/bourbon";
+@import "reset";
+@import "typography";
+@import "layout";
+@import "depth";
+@import "shapes";
+@import "buttons";
+@import "responsive";
+
+$primaryColor: #037CF1;
+$accentColor: #FFC300;
+$textColor: #111;
+
+body {
+  color: $textColor;
+}
+
+.button {
+  @include button(1rem 2rem, $primaryColor);
+  border-radius: 2px;
+
+  .accent & {
+    @include button-color($accentColor);
+  }
+  .secondary & {
+    @include button-color(#666);
+  }
+  .dangerzone & {
+    @include button-color(#FF5300);
+  }
+}
+
+header {
+  background: $primaryColor;
+  color: #fff;
+  position: relative;
+
+  @include depth(2);
+
+  .header {
+    @include responsive-document(800px, 55%);
+    padding: 1rem 2rem;
+  }
+
+  .button {
+    @include horizontal-divider(margin, 1rem);
+    @include button-color(#fff, $primaryColor);
+  }
+}
+
+.cards {
+  background: #f9f9f9;
+
+  .card {
+    @include vertical(margin, 3rem);
+    @include responsive-document(800px, 55%);
+    @include depth(1);
+    padding: 3rem;
+    background: #fff;
+  }
+}
