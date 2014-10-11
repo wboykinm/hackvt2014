@@ -126,7 +126,7 @@ angular.module('app', ['n3-line-chart'])
       chartOptions: {
         lineMode: 'basis',
         tooltip: {mode: "scrubber"},
-        columnsHGap: 60,
+        columnsHGap: '2px',
         axes: {
           x: {
             key: 'percentage',
@@ -141,7 +141,7 @@ angular.module('app', ['n3-line-chart'])
           label: 'My lights'
         }, {
           y: 'neighbors',
-          type: 'area',
+          type: 'column',
           thickness: '1px',
           drawDots: false,
           label: 'My neighbors\' lights'
@@ -298,7 +298,7 @@ angular.module('app', ['n3-line-chart'])
     };
 
     $scope.experimentReady = function(exp){
-      return ($scope.timeSince(exp.started) != 'just now');
+      return ($scope.timeSince(exp.started) != 'just started');
     };
     $scope.humanCircuits = function(list){
       var out = [];
