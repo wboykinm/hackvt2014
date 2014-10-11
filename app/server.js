@@ -18,7 +18,7 @@ var latest = function(){
   return db.select('*')
     .from('customer')
     .orderBy('date_time', 'desc')
-    .limit(24*4)
+    .limit(24)
     .map(formatRow);
 };
 
@@ -26,8 +26,8 @@ var averageWeek = function(){
   return db.select('*')
     .from('customer')
     .orderBy('date_time', 'desc')
-    .limit(24*4*7)
-    .offset(24*4)
+    .limit(24*7)
+    .offset(24)
     .map(formatRow)
     .then(function(rows){
       var out = [];
