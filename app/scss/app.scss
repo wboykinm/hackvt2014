@@ -54,6 +54,10 @@ body {
   }
 }
 
+.loading {
+  padding-top: 6rem;
+}
+
 .cards {
   background: #f9f9f9;
 
@@ -89,7 +93,7 @@ body {
   }
 
   form {
-    label {
+    label, .label {
       @include display(flex);
       margin-top: 1rem;
       @include align-items(center);
