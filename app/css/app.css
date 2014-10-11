@@ -401,7 +401,7 @@ text {
     padding: 3rem;
     background: #fff; }
     .cards .card.report {
-      background: #f5fdff; }
+      background: #85fff4; }
     .cards .card:not(:first-child) {
       margin-top: 0; }
     @media (max-width: 800px) {

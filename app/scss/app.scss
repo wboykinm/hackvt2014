@@ -10,7 +10,8 @@
 
 $primaryColor: #037CF1;
 $accentColor: #FFC300;
-$alertColor: #9CF2FF; 
+$alertColor: #9CF2FF;
+$reportColor: #85FFF4; 
 $dangerColor: #FF5300;
 $textColor: #111;
 $meColor: #00AB6F;
@@ -99,7 +100,7 @@ text {
 
   .card {
     &.report {
-      background: mix($alertColor, #fff, 10%);
+      background: $reportColor;
     }
     
     @include vertical(margin, 3rem);
