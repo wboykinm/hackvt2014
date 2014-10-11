@@ -239,6 +239,9 @@ a {
   color: #037cf1;
   text-decoration: none; }
 
+text {
+  font: inherit; }
+
 .fadeIn {
   opacity: 0;
   -webkit-transition: opacity 0.4s;
