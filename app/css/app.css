@@ -291,17 +291,6 @@ body {
     .secondary .button.ink, .secondary .button.option.selected, .secondary .button.bordered {
       border-color: #666666;
       color: #666666; }
-  .dangerzone .button {
-    background: #ff5300;
-    color: white; }
-    .dangerzone .button.option, .dangerzone .button.bordered, .dangerzone .button.ink {
-      background: transparent; }
-    .dangerzone .button.option, .dangerzone .button.bordered {
-      border-color: rgba(255, 83, 0, 0.5);
-      color: rgba(255, 83, 0, 0.5); }
-    .dangerzone .button.ink, .dangerzone .button.option.selected, .dangerzone .button.bordered {
-      border-color: #ff5300;
-      color: #ff5300; }
 
 .textbox {
   box-sizing: border-box;

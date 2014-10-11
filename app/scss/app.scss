@@ -11,6 +11,7 @@
 $primaryColor: #037CF1;
 $accentColor: #FFC300;
 $alertColor: #9CF2FF; 
+$dangerColor: #FF5300;
 $textColor: #111;
 
 body {
@@ -26,9 +27,6 @@ body {
   }
   .secondary & {
     @include button-color(#666);
-  }
-  .dangerzone & {
-    @include button-color(#FF5300);
   }
 }
 
