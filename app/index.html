@@ -23,7 +23,7 @@
   <section layout="vertical flexible center scroll" class="cards" ng-controller="main">
     <div class="card">
       <header>
-        <h3>Current usage</h3>
+        <h3>Current Usage</h3>
         <h4>{{ currentUsage.slice(-1)[0].main | number }} watts</h4>
       </header>
       <div class="lineChart">
@@ -41,6 +41,20 @@
       </p>
       <div class="lineChart">
         <linechart data="todayUsage" options="anomaly.chartOptions" mode=""></linechart>
+      </div>
+    </div>
+    <div class="card">
+      <header>
+        <h3>Efficiency Upgrade</h3>
+        <h4>{{ upgrade.title }}</h4>
+      </header>
+      <p>Your {{ upgrade.name }} use more electricity than most of your neighbors</p>
+      <p>
+        Switching to <a target="_blank" href="{{ upgrade.upgradePath.link }}">{{ upgrade.upgradePath.name }}</a> could save you <span style="font-weight:normal">{{ upgrade.upgradePath.savings | currency }}/month</span><br>
+        with a payback period of <span style="font-weight:normal">{{ upgrade.upgradePath.payback }}</span>
+      </p>
+      <div class="lineChart">
+        <linechart data="upgrade.chartData" options="upgrade.chartOptions" mode="thumbnail"></linechart>
       </div>
     </div>
   </section>

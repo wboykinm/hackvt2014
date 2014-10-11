@@ -98,4 +98,94 @@ angular.module('app', ['n3-line-chart'])
         }]
       }
     };
+
+    $scope.upgrade = {
+      title: 'Lighting',
+      name: 'lights',
+      upgradePath: {
+        name: 'LED bulbs',
+        savings: 11.22,
+        payback: '13 months, 5 days',
+        link: 'http://www.amazon.com/b/ref=sr_aj?node=2314207011&ajr=0'
+      },
+      chartOptions: {
+        lineMode: 'basis',
+        tooltip: {mode: "scrubber"},
+        columnsHGap: 60,
+        axes: {
+          x: {
+            key: 'percentage',
+            type: 'linear'
+          }
+        },
+        series: [{
+          y: 'me',
+          type: 'column',
+          thickness: '3px',
+          drawDots: false,
+          label: 'My lights'
+        }, {
+          y: 'neighbors',
+          type: 'area',
+          thickness: '1px',
+          drawDots: false,
+          label: 'My neighbors\' lights'
+        }]
+      },
+      chartData: [{
+        percentage: 0,
+        neighbors: 0,
+        me: 0
+      }, {
+        percentage: 10,
+        neighbors: (1+(Math.random()*10)/4),
+        me: 0
+      }, {
+        percentage: 20,
+        neighbors: (16+(Math.random()*10)/4),
+        me: 0
+      }, {
+        percentage: 30,
+        neighbors: (20+(Math.random()*10)/4),
+        me: 0
+      }, {
+        percentage: 40,
+        neighbors: (15+(Math.random()*10)/4),
+        me: 0
+      }, {
+        percentage: 50,
+        neighbors: (19+(Math.random()*10)/4),
+        me: 0
+      }, {
+        percentage: 60,
+        neighbors: (14+(Math.random()*10)/4),
+        me: 0
+      }, {
+        percentage: 60.01,
+        me: 25
+      }, {
+        percentage: 60.02,
+        me: 0
+      }, {
+        percentage: 70,
+        neighbors: (8+(Math.random()*10)/4),
+        me: 0
+      }, {
+        percentage: 80,
+        neighbors: (4+(Math.random()*10)/4),
+        me: 0
+      }, {
+        percentage: 90,
+        neighbors: (12+(Math.random()*10)/4),
+        me: 0
+      }, {
+        percentage: 95,
+        neighbors: (2+(Math.random()*10)/4),
+        me: 0
+      }, {
+        percentage: 100,
+        neighbors: 0,
+        me: 0
+      }]
+    };
   });
