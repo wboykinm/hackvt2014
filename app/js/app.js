@@ -30,7 +30,7 @@ angular.module('app', ['n3-line-chart'])
 
     $scope.currentUsageOptions = {
       lineMode: 'basis',
-      tooltip: {mode: 'scrubber', formatter: function(x, y, series) {return ($scope.circuits[series.y] || 'Entire home')+' '+y+'w';}},
+      tooltip: {mode: 'none'},
       axes: {
         x: {
           key: 'date_time',
