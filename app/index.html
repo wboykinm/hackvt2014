@@ -122,7 +122,7 @@
         Switching to <a target="_blank" href="{{ upgrade.upgradePath.link }}">{{ upgrade.upgradePath.name }}</a> could save you <span style="font-weight:normal">{{ upgrade.upgradePath.savings | currency }}/month</span><br>
         with a payback period of <span style="font-weight:normal">{{ upgrade.upgradePath.payback }}</span>
       </p>
-      <div class="lineChart">
+      <div class="lineChart neighbors">
         <linechart data="upgrade.chartData" options="upgrade.chartOptions" mode=""></linechart>
       </div>
     </div>

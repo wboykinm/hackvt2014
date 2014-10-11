@@ -20,7 +20,10 @@ var latest = function(since){
     .where('date_time', '<', (new Date(since*1)).toISOString())
     .orderBy('date_time', 'desc')
     .limit(60)
-    .map(formatRow);
+    .map(formatRow)
+    .then(function(rows){
+      return rows.reverse();
+    });
 };
 
 var reduceToHours = function(rows){

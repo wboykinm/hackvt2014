@@ -476,6 +476,11 @@ text {
       display: none; }
     .cards .lineChart .legendItem path {
       display: none; }
+    .cards .lineChart.neighbors .y.axis {
+      opacity: 0; }
+    .cards .lineChart.neighbors .content .columnGroup rect:nth-child(14) {
+      fill: #00ab6f;
+      stroke: #00ab6f; }
   .cards form label, .cards form .label {
     display: -webkit-box;
     display: -moz-box;

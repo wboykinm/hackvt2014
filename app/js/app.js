@@ -30,7 +30,7 @@ angular.module('app', ['n3-line-chart'])
 
     $scope.currentUsageOptions = {
       lineMode: 'basis',
-      tooltip: {mode: 'scrubber', formatter: function(x, y, series) {return y + ' Watts';}},
+      tooltip: {mode: 'scrubber', formatter: function(x, y, series) {return ($scope.circuits[series.y] || 'Entire home')+' '+y+'w';}},
       axes: {
         x: {
           key: 'date_time',
@@ -47,7 +47,7 @@ angular.module('app', ['n3-line-chart'])
         label: 'Entire house',
         thickness: '3px',
         drawDots: false
-      }]
+      }],
     };
     for (var key in $scope.circuits) {
       $scope.currentUsageOptions.series.push({
@@ -131,7 +131,8 @@ angular.module('app', ['n3-line-chart'])
           x: {
             key: 'percentile',
             type: 'linear'
-          }
+          },
+          y: {type: 'linear', labelFunction: function(val){ return ' - '; }}
         },
         series: [/*{
           y: 'me',
@@ -453,6 +454,9 @@ angular.module('app', ['n3-line-chart'])
     $scope.$watch('view', function(view){
       $scope.currentPage = view || 'welcome';
       window.dispatchEvent(new Event('resize'));
+      setTimeout(function(){
+        window.dispatchEvent(new Event('resize'));
+      }, 1);
     });
 
     $scope.signUp = function(){

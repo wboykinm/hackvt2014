@@ -13,6 +13,7 @@ $accentColor: #FFC300;
 $alertColor: #9CF2FF; 
 $dangerColor: #FF5300;
 $textColor: #111;
+$meColor: #00AB6F;
 
 body {
   color: $textColor;
@@ -146,6 +147,15 @@ text {
     }
     .legendItem path {
       display: none;
+    }
+
+    &.neighbors .y.axis {
+      opacity: 0;
+    }
+
+    &.neighbors .content .columnGroup rect:nth-child(14) {
+      fill: $meColor;
+      stroke: $meColor;
     }
   }
 
