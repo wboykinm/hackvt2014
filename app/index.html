@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
-  <title>PadLab</title>
+  <title>padLab</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="content-type" content="charset=UTF8">
 
-  <link rel="stylesheet" type="text/css" href="css/app.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/app.css">
 </head>
 <body layout="vertical fullbleed" ng-controller="main">
 
   <header id="header" layout="fixed vertical center">
     <div layout="horizontal center" class="header">
       <div layout="block fixed">
-        <h1 ng-click="showMain()"><img src="img/svg/padlab.svg"/> padLab Dashboard</h1>
+        <h1 ng-click="showMain()"><i class="fixed fa fa-bolt"></i>padLab.{{ currentPage }}</h1>
       </div>
       <div layout="block grow"></div>
       <div layout="fixed horizontal">
-        <button class="button ink" ng-click="fastForward()">Fast forward</button>
-        <button class="button bordered" ng-click="showExperiment()">Experiment</button>
+        <button class="button ink" ng-click="fastForward()"><i class="fa fa-forward"></i> Fast forward</button>
+        <button class="button bordered" ng-click="showExperiment()"><i class="fa fa-flask"></i> Experiment</button>
       </div>
     </div>
   </header>
@@ -84,7 +85,7 @@
     </div>
     <div class="card">
       <header>
-        <h3><img src="img/svg/line_graph.svg"/> Current Usage</h3>
+        <h3><i class="fixed fa fa-clock-o"></i>Current Usage</h3>
         <h4>{{ currentUsage.slice(-1)[0].main | number }} watts</h4>
       </header>
       <div class="lineChart currentUsage">
@@ -93,7 +94,7 @@
     </div>
     <div class="card" ng-show="anomaly">
       <header>
-        <h3>Usage Anomaly</h3>
+        <h3><i class="fixed fa fa-exclamation"></i>Usage Anomaly</h3>
         <h4>{{ anomaly.title }}</h4>
       </header>
       <p>
@@ -106,7 +107,7 @@
     </div>
     <div class="card">
       <header>
-        <h3>Efficiency Upgrade</h3>
+        <h3><i class="fixed fa fa-lightbulb-o"></i>Efficiency Upgrade</h3>
         <h4>{{ upgrade.title }}</h4>
       </header>
       <p>Your {{ upgrade.name }} use more electricity than most of your neighbors</p>

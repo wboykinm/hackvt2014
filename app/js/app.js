@@ -7,7 +7,7 @@ angular.module('app', ['n3-line-chart'])
       now.setMinutes(now.getMinutes()+1);
       $scope.now = now;
       $scope.$apply();
-    }, 5000);
+    }, 2000);
 
     $scope.circuits = {
       dhw: 'Hot water heater',
@@ -342,4 +342,8 @@ angular.module('app', ['n3-line-chart'])
         calcSavings(exp);
       });
     };
+
+    $scope.$watch('view', function(view){
+      $scope.currentPage = (view == 'experiment') ? 'experiment' : 'dashboard';
+    });
   });

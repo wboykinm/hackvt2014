@@ -47,12 +47,25 @@ body {
   .header {
     @include responsive-document(800px, 55%);
     padding: 1rem 2rem;
+
+    h1 {
+      @include display(flex);
+      @include align-items(center);
+    }
   }
 
   .button {
     @include horizontal-divider(margin, 1rem);
     @include button-color(#fff, $primaryColor);
   }
+}
+
+.fa.fixed {
+  width: 48px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 48px;
+  margin-right: 16px;
 }
 
 .loading {
@@ -77,6 +90,8 @@ body {
       @include display(flex);
       h3 {
         @include flex-grow(1);
+        @include display(flex);
+        @include align-items(center);
       }
     }
   }
