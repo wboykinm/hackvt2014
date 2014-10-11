@@ -125,7 +125,7 @@ angular.module('app', ['n3-line-chart'])
       },
       chartOptions: {
         lineMode: 'basis',
-        tooltip: {mode: 'axes', formatter: function(x, y, series) {return y + ' kWh';}},
+        tooltip: {mode: 'scrubber', formatter: function(x, y, series) {return x + ' percentile,' + y + ' kWh';}},
         columnsHGap: 2,
         axes: {
           x: {
@@ -135,16 +135,18 @@ angular.module('app', ['n3-line-chart'])
         },
         series: [/*{
           y: 'me',
-          type: 'line',
+          type: 'column',
           thickness: '3px',
           drawDots: false,
+          color: '#2CA02C',
           label: 'My lights'
         },*/ {
           y: 'kwh',
           type: 'column',
+          color: '#1D96E6',
           thickness: '15px',
           drawDots: false,
-          label: 'My neighbors\' lights'
+          label: 'My neighbors\' light use this week (kWh)'
         }]
       },
       chartData: [
@@ -227,7 +229,87 @@ angular.module('app', ['n3-line-chart'])
         {
           percentile:100,
           kwh:56.92
-        }
+        }/*,
+        {
+          percentile:5,
+          me:0
+        },
+        {
+          percentile:10,
+          me:0
+        },
+        {
+          percentile:15,
+          me:0
+        },
+        {
+          percentile:20,
+          me:0
+        },
+        {
+          percentile:25,
+          me:0
+        },
+        {
+          percentile:30,
+          me:0
+        },
+        {
+          percentile:35,
+          me:0
+        },
+        {
+          percentile:40,
+          me:0
+        },
+        {
+          percentile:45,
+          me:0
+        },
+        {
+          percentile:50,
+          me:0
+        },
+        {
+          percentile:55,
+          me:0
+        },
+        {
+          percentile:60,
+          me:0
+        },
+        {
+          percentile:65,
+          me:0
+        },
+        {
+          percentile:70,
+          me:15.643
+        },
+        {
+          percentile:75,
+          me:0
+        },
+        {
+          percentile:80,
+          me:0
+        },
+        {
+          percentile:85,
+          me:0
+        },
+        {
+          percentile:90,
+          me:0
+        },
+        {
+          percentile:95,
+          me:0
+        },
+        {
+          percentile:100,
+          me:0
+        }*/
       ]
     };
 
