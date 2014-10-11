@@ -4,6 +4,7 @@
 @import "layout";
 @import "depth";
 @import "shapes";
+@import "input";
 @import "buttons";
 @import "responsive";
 
@@ -28,6 +29,11 @@ body {
   .dangerzone & {
     @include button-color(#FF5300);
   }
+}
+
+.textbox {
+  @include input(1rem 2rem, $primaryColor);
+  border-radius: 2px;
 }
 
 #header {
@@ -68,5 +74,51 @@ body {
 
   .lineChart {
     height: 400px;
+
+    .legendText, .tick {
+      font-size: 1.3333rem;
+    }
+    &.currentUsage {
+      .tick {
+        display: none;
+      }
+    }
+    .legendItem path {
+      display: none;
+    }
+  }
+
+  form {
+    label {
+      @include display(flex);
+      margin-top: 1rem;
+      @include align-items(center);
+
+      &>.name {
+        width: 25%;
+      }
+      &>.name, input {
+        @include perfect-fourth(2);
+        @include flex-shrink(0);
+      }
+    }
+
+    .buttons {
+      margin-top: 3rem;
+    }
+  }
+
+  .inputArea {
+    display: block;
+  }
+
+  .inputArea.buttonList {
+    margin-top: 8px;
+
+    .button {
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
   }
 }

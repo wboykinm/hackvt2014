@@ -7,27 +7,67 @@
 
   <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
-<body layout="vertical fullbleed">
+<body layout="vertical fullbleed" ng-controller="main">
 
   <header id="header" layout="fixed vertical center">
     <div layout="horizontal center" class="header">
       <div layout="block fixed">
-        <h1>My Energy</h1>
+        <h1 ng-click="showMain()">My Energy</h1>
       </div>
       <div layout="block grow"></div>
       <div layout="fixed horizontal">
-        <button class="button bordered" ng-click="experiment()">Experiment</button>
+        <button class="button bordered" ng-click="showExperiment()">Experiment</button>
       </div>
     </div>
   </header>
-  <section layout="vertical flexible center scroll" class="cards" ng-controller="main">
+  <section layout="vertical flexible center scroll" class="cards" ng-show="view == 'experiment'">
+    <div class="card experiment">
+      <header>
+        <h3>New Experiment</h3>
+      </header>
+      <form name="experimentForm" novalidate>
+        <label>
+          <span class="name">Name</span>
+          <span class="inputArea">
+            <input type="text" class="textbox" name="name" ng-model="experiment.name" placeholder="what's new?">
+          </span>
+        </label>
+        <label>
+          <span class="name">Price</span>
+          <span class="inputArea">
+            <input type="text" class="textbox" name="name" ng-model="experiment.price" placeholder="$__.__">
+          </span>
+        </label>
+        <label>
+          <span class="name">Circuits affected</span>
+          <span class="inputArea buttonList">
+            <button type="button" class="button option"
+              ng-repeat="(key, circuit) in filteredCircuits"
+              ng-class="{selected: experiment.circuits[key]}"
+              ng-click="toggleCircuit(key)">
+              {{ circuit }}
+            </button>
+          </span>
+        </label>
+        <div class="buttons" layout="horizontal">
+          <div class="left" layout="block grow">
+            <button class="button ink" ng-click="showMain()">Nevermind</button>
+          </div>
+          <div class="right" layout="block">
+            <button class="button">Start experiment</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section layout="vertical flexible center scroll" class="cards" ng-show="view == 'main'">
     <div class="card">
       <header>
         <h3>Current Usage</h3>
         <h4>{{ currentUsage.slice(-1)[0].main | number }} watts</h4>
       </header>
-      <div class="lineChart">
-        <linechart data="currentUsage" options="currentUsageOptions" mode="thumbnail"></linechart>
+      <div class="lineChart currentUsage">
+        <linechart data="currentUsage" options="currentUsageOptions" mode=""></linechart>
       </div>
     </div>
     <div class="card">

@@ -9,7 +9,7 @@ angular.module('app', ['n3-line-chart'])
       $scope.$apply();
     }, 1000);
 
-    $scope.plan = {
+    $scope.circuits = {
       dhw: 'Hot water heater',
       dryer: 'Dryer',
       range: 'Stove',
@@ -35,6 +35,11 @@ angular.module('app', ['n3-line-chart'])
         x: {
           key: 'date_time',
           type: 'date'
+        },
+        y: {
+          labelFunction: function(w){
+            return ' - ';
+          }
         }
       },
       series: [{
@@ -43,9 +48,10 @@ angular.module('app', ['n3-line-chart'])
         drawDots: false
       }]
     };
-    for (var key in $scope.plan) {
+    for (var key in $scope.circuits) {
       $scope.currentUsageOptions.series.push({
         y: key,
+        label: $scope.circuits[key],
         thickness: '1.5px',
         drawDots: false
       });
@@ -187,5 +193,59 @@ angular.module('app', ['n3-line-chart'])
         neighbors: 0,
         me: 0
       }]
+    };
+
+    $scope.view = 'main';
+    $scope.experiment = {
+      name: '',
+      price: '',
+      circuits: {}
+    };
+    $scope.filteredCircuits = $scope.circuits;
+    $scope.showExperiment = function(){
+      $scope.view = 'experiment';
+      $scope.filteredCircuits = $scope.circuits;
+      $scope.experiment = {
+        name: '',
+        price: '',
+        circuits: {}
+      };
+    };
+    $scope.$watchCollection('experiment', function(experiment){
+      var circuitList = [];
+      for (var key in $scope.circuits) {
+        circuitList.push({
+          key: key,
+          name: $scope.circuits[key]
+        });
+      }
+
+      var filteredCircuits = circuitList;
+      if (experiment.name.indexOf('thermostat') != -1) {
+        filteredCircuits = circuitList.filter(function(circuit){
+          return (circuit.name.toLowerCase().indexOf('heat') != -1);
+        });
+      } else if (experiment.name.indexOf('light') != -1) {
+        filteredCircuits = circuitList.filter(function(circuit){
+          return (circuit.name.toLowerCase().indexOf('lights') != -1 || circuit.name.toLowerCase().indexOf('outlet') != -1);
+        });
+      }
+
+      $scope.filteredCircuits = {};
+
+      filteredCircuits.forEach(function(circuit){
+        $scope.filteredCircuits[circuit.key] = circuit.name;
+      });
+    });
+    $scope.showMain = function(){
+      $scope.view = 'main';
+    };
+
+    $scope.toggleCircuit = function(circuit){
+      if ($scope.experiment.circuits[circuit]) {
+        delete $scope.experiment.circuits[circuit];
+      } else {
+        $scope.experiment.circuits[circuit] = true;
+      }
     };
   });
