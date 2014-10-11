@@ -7,3 +7,10 @@ CREATE TABLE montpelier_hourly (
 	LATITUDE text,
 	LONGITUDE text
 );
+
+COPY 
+	montpelier_hourly 
+FROM 
+	'/Users/wboykinm/Dropbox/Consulting/hackvt2014/montpelier-30days.csv' 
+DELIMITER ',' CSV
+;
