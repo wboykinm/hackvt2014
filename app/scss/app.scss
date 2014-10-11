@@ -18,6 +18,11 @@ body {
   color: $textColor;
 }
 
+a {
+  color: $primaryColor;
+  text-decoration: none;
+}
+
 .fadeIn {
   opacity: 0;
 

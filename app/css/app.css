@@ -235,6 +235,10 @@ html, body {
 body {
   color: #111111; }
 
+a {
+  color: #037cf1;
+  text-decoration: none; }
+
 .fadeIn {
   opacity: 0;
   -webkit-transition: opacity 0.4s;
