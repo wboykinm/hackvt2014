@@ -10,6 +10,7 @@
 
 $primaryColor: #037CF1;
 $accentColor: #FFC300;
+$alertColor: #9CF2FF; 
 $textColor: #111;
 
 body {
@@ -62,6 +63,10 @@ body {
   background: #f9f9f9;
 
   .card {
+    &.report {
+      background: $alertColor;
+    }
+    
     @include vertical(margin, 3rem);
     @include responsive-document(800px, 55%);
     @include depth(1);

@@ -12,11 +12,11 @@
   <header id="header" layout="fixed vertical center">
     <div layout="horizontal center" class="header">
       <div layout="block fixed">
-        <h1 ng-click="showMain()">padLab Dashboard</h1>
+        <h1 ng-click="showMain()"><img src="img/svg/padlab.svg"/> padLab Dashboard</h1>
       </div>
       <div layout="block grow"></div>
       <div layout="fixed horizontal">
-        <button class="button ink" ng-click="fastForward()"><img src="img/clock.png"/> Fast forward</button>
+        <button class="button ink" ng-click="fastForward()">Fast forward</button>
         <button class="button bordered" ng-click="showExperiment()">Experiment</button>
       </div>
     </div>
@@ -65,7 +65,7 @@
     </div>
   </section>
   <section layout="vertical flexible center scroll" class="cards" ng-show="view == 'main' && !loading">
-    <div class="card" ng-repeat="exp in experiments">
+    <div class="card report" ng-repeat="exp in experiments">
       <header>
         <h3>{{ exp.name }} experiment</h3>
         <h4>{{ timeSince(exp.started) }}</h4>
@@ -84,7 +84,7 @@
     </div>
     <div class="card">
       <header>
-        <h3>Current Usage</h3>
+        <h3><img src="img/svg/line_graph.svg"/> Current Usage</h3>
         <h4>{{ currentUsage.slice(-1)[0].main | number }} watts</h4>
       </header>
       <div class="lineChart currentUsage">
