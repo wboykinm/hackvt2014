@@ -89,7 +89,7 @@ angular.module('app', ['n3-line-chart'])
           title: 'Heat pump',
           chartOptions: {
             lineMode: 'basis',
-            tooltip: {mode: "scrubber"},
+            tooltip: {mode: "axes"},
             axes: {
               x: {
                 key: 'date_time',
@@ -125,7 +125,7 @@ angular.module('app', ['n3-line-chart'])
       },
       chartOptions: {
         lineMode: 'basis',
-        tooltip: {mode: 'scrubber', formatter: function(x, y, series) {return y + ' kWh';}},
+        tooltip: {mode: 'axes', formatter: function(x, y, series) {return y + ' kWh';}},
         columnsHGap: 2,
         axes: {
           x: {
@@ -135,7 +135,7 @@ angular.module('app', ['n3-line-chart'])
         },
         series: [{
           y: 'me',
-          type: 'column',
+          type: 'line',
           thickness: '3px',
           drawDots: false,
           label: 'My lights'
@@ -149,57 +149,48 @@ angular.module('app', ['n3-line-chart'])
       },
       chartData: [{
         percentage: 0,
-        neighbors: 0,
-        me: 0
+        neighbors: 0
       }, {
         percentage: 10,
-        neighbors: (1+(Math.random()*10)/4),
-        me: 0
+        neighbors: (1+(Math.random()*10)/4)
       }, {
         percentage: 20,
-        neighbors: (16+(Math.random()*10)/4),
-        me: 0
+        neighbors: (16+(Math.random()*10)/4)
       }, {
         percentage: 30,
-        neighbors: (20+(Math.random()*10)/4),
-        me: 0
+        neighbors: (20+(Math.random()*10)/4)
       }, {
         percentage: 40,
-        neighbors: (15+(Math.random()*10)/4),
-        me: 0
+        neighbors: (15+(Math.random()*10)/4)
       }, {
         percentage: 50,
-        neighbors: (19+(Math.random()*10)/4),
-        me: 0
+        neighbors: (19+(Math.random()*10)/4)
       }, {
         percentage: 60,
-        neighbors: (14+(Math.random()*10)/4),
-        me: 0
-      }, {
-        percentage: 60.01,
-        me: 25
-      }, {
-        percentage: 60.02,
-        me: 0
+        neighbors: (14+(Math.random()*10)/4)
       }, {
         percentage: 70,
-        neighbors: (8+(Math.random()*10)/4),
-        me: 0
+        neighbors: (8+(Math.random()*10)/4)
       }, {
         percentage: 80,
-        neighbors: (4+(Math.random()*10)/4),
-        me: 0
+        neighbors: (4+(Math.random()*10)/4)
       }, {
         percentage: 90,
-        neighbors: (12+(Math.random()*10)/4),
-        me: 0
+        neighbors: (12+(Math.random()*10)/4)
       }, {
         percentage: 95,
-        neighbors: (2+(Math.random()*10)/4),
-        me: 0
+        neighbors: (2+(Math.random()*10)/4)
       }, {
         percentage: 100,
-        neighbors: 0,
+        neighbors: 0
+      }, {
+        percentage: 63,
+        me: 0
+      }, {
+        percentage: 63.01,
+        me: 50
+      }, {
+        percentage: 63.01,
         me: 0
       }]
     };
@@ -235,7 +226,7 @@ angular.module('app', ['n3-line-chart'])
         filteredCircuits = circuitList.filter(function(circuit){
           return (circuit.name.toLowerCase().indexOf('heat') != -1);
         });
-      } else if (experiment.name.indexOf('light') != -1) {
+      } else if (experiment.name.toLowerCase().indexOf('light') != -1) {
         filteredCircuits = circuitList.filter(function(circuit){
           return (circuit.name.toLowerCase().indexOf('lights') != -1 || circuit.name.toLowerCase().indexOf('outlet') != -1);
         });
@@ -269,7 +260,7 @@ angular.module('app', ['n3-line-chart'])
 
       exp.chartOptions = {
         lineMode: 'basis',
-        tooltip: {mode: "scrubber"},
+        tooltip: {mode: "axes"},
         axes: {
           x: {
             key: 'date_time',
@@ -298,7 +289,7 @@ angular.module('app', ['n3-line-chart'])
     };
 
     $scope.experimentReady = function(exp){
-      return ($scope.timeSince(exp.started) != 'just started');
+      return ($scope.timeSince(exp.started) != 'just now');
     };
     $scope.humanCircuits = function(list){
       var out = [];

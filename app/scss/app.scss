@@ -75,7 +75,7 @@ body {
 
   .card {
     &.report {
-      background: $alertColor;
+      background: mix($alertColor, #fff, 10%);
     }
     
     @include vertical(margin, 3rem);

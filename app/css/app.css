@@ -380,7 +380,7 @@ body {
     padding: 3rem;
     background: #fff; }
     .cards .card.report {
-      background: #9cf2ff; }
+      background: #f5fdff; }
     .cards .card:not(:first-child) {
       margin-top: 0; }
     @media (max-width: 800px) {
