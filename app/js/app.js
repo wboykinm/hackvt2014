@@ -88,11 +88,13 @@ angular.module('app', ['n3-line-chart'])
         series: [{
           y: 'hp',
           thickness: '3px',
-          drawDots: false
+          drawDots: false,
+          label: 'Current usage'
         }, {
           y: 'average_hp',
           thickness: '1px',
-          drawDots: false
+          drawDots: false,
+          label: 'Typical usage'
         }]
       }
     };

@@ -35,8 +35,10 @@
         <h3>Usage Anomaly</h3>
         <h4>{{ anomaly.title }}</h4>
       </header>
-      <p>{{ anomaly.title }} load is much higher than usual</p>
-      <p style="font-style: italic">Did you leave a window open?</p>
+      <p>
+        {{ anomaly.title }} load is much higher than usual<br>
+        <span style="font-style:italic">Did you leave a window open?</span>
+      </p>
       <div class="lineChart">
         <linechart data="todayUsage" options="anomaly.chartOptions" mode=""></linechart>
       </div>
