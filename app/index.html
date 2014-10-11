@@ -13,15 +13,22 @@
   <header id="header" layout="fixed vertical center">
     <div layout="horizontal center" class="header">
       <div layout="block fixed">
-        <h1 ng-click="showMain()"><i class="fixed fa fa-bolt"></i>padLab.{{ currentPage }}</h1>
+        <h1 ng-click="showMain()" class="fadeIn" ng-class="{visible: view != 'welcome'}"><i class="fixed fa fa-bolt"></i>padLab {{ currentPage }}</h1>
       </div>
       <div layout="block grow"></div>
-      <div layout="fixed horizontal">
+      <div layout="fixed horizontal" class="fadeIn" ng-class="{visible: view == 'dashboard'}">
         <button class="button ink" ng-click="fastForward()"><i class="fa fa-forward"></i> Fast forward</button>
         <button class="button bordered" ng-click="showExperiment()"><i class="fa fa-flask"></i> Experiment</button>
       </div>
     </div>
   </header>
+  <section layout="vertical flexible center" class="welcome cards" ng-show="view == 'welcome'">
+    <div class="card" ng-mouseup="signUp()" ng-class="{out:signingIn}">
+      <i class="logo fa fa-bolt"></i>
+      <h3>Welcome to padLab</h3>
+      <button class="button flat bordered">sign in</button>
+    </div>
+  </section>
   <section layout="vertical flexible center" class="loading" ng-show="loading">
     <h3>Loading...</h3>
   </section>
@@ -65,11 +72,11 @@
       </form>
     </div>
   </section>
-  <section layout="vertical flexible center scroll" class="cards" ng-show="view == 'main' && !loading">
+  <section layout="vertical flexible center scroll" class="cards slideIn" ng-class="{sliding: sliding}" ng-show="view == 'dashboard' && !loading">
     <div class="card report" ng-repeat="exp in experiments">
       <header>
         <h3>{{ exp.name }} experiment</h3>
-        <p>{{ timeSince(exp.started) }}</p>
+        <h4>{{ timeSince(exp.started) }}</h4>
       </header>
       <p ng-hide="experimentReady(exp)">
         Looking for patterns, check back later

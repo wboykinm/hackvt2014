@@ -18,10 +18,31 @@ body {
   color: $textColor;
 }
 
+a {
+  color: $primaryColor;
+  text-decoration: none;
+}
+
+text {
+  font: inherit;
+}
+
+.fadeIn {
+  opacity: 0;
+
+  @include transition(opacity 0.4s);
+  &.visible {
+    opacity: 1;
+  }
+}
+
 .button {
   @include button(1rem 2rem, $primaryColor);
   border-radius: 2px;
   @include perfect-fourth(1);
+  &.option {
+    @include perfect-fourth(0);
+  }
 
   .accent & {
     @include button-color($accentColor);
@@ -73,7 +94,7 @@ body {
 }
 
 .cards {
-  background: #f9f9f9;
+  background: #f5f5f5;
 
   .card {
     &.report {
@@ -82,18 +103,34 @@ body {
     
     @include vertical(margin, 3rem);
     @include responsive-document(800px, 55%);
-    @include depth(1);
+    @include depth(5);
     padding: 3rem;
     background: #fff;
 
     header {
       @include display(flex);
+      @include align-items(center);
+
       h3 {
         @include flex-grow(1);
         @include display(flex);
         @include align-items(center);
       }
+      h4 {
+        @include perfect-fourth(3);
+      }
     }
+  }
+
+  &.slideIn .card {
+    @include transform(translateY(2000px));
+    @include transition(transform 0.6s ease-out);
+    &:nth-child(2) {
+      @include transition-delay(0.1s);
+    }
+  }
+  &.slideIn.sliding .card {
+    @include transform(translateY(0px));
   }
 
   .lineChart {
@@ -144,5 +181,33 @@ body {
       margin-right: 8px;
       margin-bottom: 8px;
     }
+  }
+}
+
+.welcome.cards .card {
+  text-align: center;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  cursor: pointer;
+
+  @include depth(5);
+  @include transition(box-shadow 0.2s, transform 0.2s);
+
+  &:active {
+    @include depth(3);
+    @include transform(translateY(4px));
+  }
+  &.out {
+    @include transition(box-shadow 0.2s, transform 0.8s);
+    @include transform(translateX(2000px));
+  }
+
+  .logo {
+    font-size: 144px;
+    margin-bottom: 4rem;
+  }
+  .button {
+    margin: 2rem auto 0;
   }
 }

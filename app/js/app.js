@@ -313,7 +313,7 @@ angular.module('app', ['n3-line-chart'])
       ]
     };
 
-    $scope.view = 'main';
+    $scope.view = 'welcome';
     $scope.experiment = {
       name: '',
       price: '',
@@ -357,7 +357,7 @@ angular.module('app', ['n3-line-chart'])
       });
     });
     $scope.showMain = function(){
-      $scope.view = 'main';
+      $scope.view = 'dashboard';
     };
 
     $scope.toggleCircuit = function(circuit){
@@ -440,9 +440,7 @@ angular.module('app', ['n3-line-chart'])
       setTimeout(function(){
         $scope.loading = false;
         $scope.$apply();
-        //setTimeout(function(){
-          window.dispatchEvent(new Event('resize'));
-        //}, 1000);
+        window.dispatchEvent(new Event('resize'));
       }, 1000+(Math.random()*1000));
       var now = new Date($scope.now);
       now.setDate(now.getDate()+7);
@@ -453,6 +451,23 @@ angular.module('app', ['n3-line-chart'])
     };
 
     $scope.$watch('view', function(view){
-      $scope.currentPage = (view == 'experiment') ? 'experiment' : 'dashboard';
+      $scope.currentPage = view || 'welcome';
+      window.dispatchEvent(new Event('resize'));
     });
+
+    $scope.signUp = function(){
+      setTimeout(function(){
+        $scope.signingIn = true;
+        $scope.$apply();
+
+        setTimeout(function(){
+          $scope.view = 'dashboard';
+          $scope.$apply();
+          setTimeout(function(){
+            $scope.sliding = true;
+            $scope.$apply();
+          }, 1);
+        }, 300);
+      }, 300);
+    };
   });
