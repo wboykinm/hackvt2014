@@ -7,35 +7,95 @@
 
   <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
-<body layout="vertical fullbleed">
+<body layout="vertical fullbleed" ng-controller="main">
 
-  <header layout="fixed vertical center">
+  <header id="header" layout="fixed vertical center">
     <div layout="horizontal center" class="header">
       <div layout="block fixed">
-        <h1>My Energy</h1>
+        <h1 ng-click="showMain()">My Energy</h1>
       </div>
       <div layout="block grow"></div>
       <div layout="fixed horizontal">
-        <button class="button bordered">button</button>
+        <button class="button bordered" ng-click="showExperiment()">Experiment</button>
       </div>
     </div>
   </header>
-  <section layout="vertical flexible center scroll" class="cards" ng-controller="main">
+  <section layout="vertical flexible center scroll" class="cards" ng-show="view == 'experiment'">
+    <div class="card experiment">
+      <header>
+        <h3>New Experiment</h3>
+      </header>
+      <form name="experimentForm" novalidate>
+        <label>
+          <span class="name">Name</span>
+          <span class="inputArea">
+            <input type="text" class="textbox" name="name" ng-model="experiment.name" placeholder="what's new?">
+          </span>
+        </label>
+        <label>
+          <span class="name">Price</span>
+          <span class="inputArea">
+            <input type="text" class="textbox" name="name" ng-model="experiment.price" placeholder="$__.__">
+          </span>
+        </label>
+        <label>
+          <span class="name">Circuits affected</span>
+          <span class="inputArea buttonList">
+            <button type="button" class="button option"
+              ng-repeat="(key, circuit) in filteredCircuits"
+              ng-class="{selected: experiment.circuits[key]}"
+              ng-click="toggleCircuit(key)">
+              {{ circuit }}
+            </button>
+          </span>
+        </label>
+        <div class="buttons" layout="horizontal">
+          <div class="left" layout="block grow">
+            <button class="button ink" ng-click="showMain()">Nevermind</button>
+          </div>
+          <div class="right" layout="block">
+            <button class="button">Start experiment</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section layout="vertical flexible center scroll" class="cards" ng-show="view == 'main'">
     <div class="card">
-      <h3>Current usage</h3>
-      <linechart data="currentUsage" options="chartOptions" mode="" style="height:400px"></linechart>
+      <header>
+        <h3>Current Usage</h3>
+        <h4>{{ currentUsage.slice(-1)[0].main | number }} watts</h4>
+      </header>
+      <div class="lineChart currentUsage">
+        <linechart data="currentUsage" options="currentUsageOptions" mode=""></linechart>
+      </div>
     </div>
     <div class="card">
-      <h3>Solar generation</h3>
-      <p>you - 800w</p>
-      <p>your neighborhood - 12kw</p>
-      <p>your town - 142kw</p>
+      <header>
+        <h3>Usage Anomaly</h3>
+        <h4>{{ anomaly.title }}</h4>
+      </header>
+      <p>
+        {{ anomaly.title }} load is much higher than usual<br>
+        <span style="font-style:italic">Did you leave a window open?</span>
+      </p>
+      <div class="lineChart">
+        <linechart data="todayUsage" options="anomaly.chartOptions" mode=""></linechart>
+      </div>
     </div>
     <div class="card">
-      <h3>Rate</h3>
-      <p>You are getting paid 6 cents an hour</p>
-      <p>Your neighbors are paying 8 cents an hour</p>
-      <p></p>
+      <header>
+        <h3>Efficiency Upgrade</h3>
+        <h4>{{ upgrade.title }}</h4>
+      </header>
+      <p>Your {{ upgrade.name }} use more electricity than most of your neighbors</p>
+      <p>
+        Switching to <a target="_blank" href="{{ upgrade.upgradePath.link }}">{{ upgrade.upgradePath.name }}</a> could save you <span style="font-weight:normal">{{ upgrade.upgradePath.savings | currency }}/month</span><br>
+        with a payback period of <span style="font-weight:normal">{{ upgrade.upgradePath.payback }}</span>
+      </p>
+      <div class="lineChart">
+        <linechart data="upgrade.chartData" options="upgrade.chartOptions" mode="thumbnail"></linechart>
+      </div>
     </div>
   </section>
 

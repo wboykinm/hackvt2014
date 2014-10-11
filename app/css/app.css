@@ -303,31 +303,54 @@ body {
       border-color: #ff5300;
       color: #ff5300; }
 
-header {
+.textbox {
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  position: relative;
+  font: inherit;
+  padding: 1rem 2rem;
+  -webkit-transition: box-shadow 0.2s;
+  -moz-transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 0 0 transparent;
+  border: 1.4px solid;
+  border-color: rgba(3, 124, 241, 0.5);
+  color: inherit;
+  border-radius: 2px; }
+  .textbox:hover {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(0, 0, 0, 0.15); }
+  .textbox:active {
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1); }
+  .textbox:focus {
+    border-color: #037cf1; }
+
+#header {
   background: #037cf1;
   color: #fff;
   position: relative;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1); }
-  header .header {
+  #header .header {
     width: 55%;
     min-width: 800px;
     padding: 1rem 2rem; }
     @media (max-width: 800px) {
-      header .header {
+      #header .header {
         width: 100%;
         min-width: 0; } }
-  header .button {
+  #header .button {
     margin-right: 1rem;
     background: white;
     color: #037cf1; }
-    header .button:last-child {
+    #header .button:last-child {
       margin-right: 0; }
-    header .button.option, header .button.bordered, header .button.ink {
+    #header .button.option, #header .button.bordered, #header .button.ink {
       background: transparent; }
-    header .button.option, header .button.bordered {
+    #header .button.option, #header .button.bordered {
       border-color: rgba(255, 255, 255, 0.5);
       color: rgba(255, 255, 255, 0.5); }
-    header .button.ink, header .button.option.selected, header .button.bordered {
+    #header .button.ink, #header .button.option.selected, #header .button.bordered {
       border-color: white;
       color: white; }
 
@@ -346,3 +369,61 @@ header {
       .cards .card {
         width: 100%;
         min-width: 0; } }
+    .cards .card header {
+      display: -webkit-box;
+      display: -moz-box;
+      display: box;
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: flex; }
+      .cards .card header h3 {
+        -webkit-flex-grow: 1;
+        -moz-flex-grow: 1;
+        flex-grow: 1;
+        -ms-flex-positive: 1; }
+  .cards .lineChart {
+    height: 400px; }
+    .cards .lineChart .legendText, .cards .lineChart .tick {
+      font-size: 1.3333rem; }
+    .cards .lineChart.currentUsage .tick {
+      display: none; }
+    .cards .lineChart .legendItem path {
+      display: none; }
+  .cards form label {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 1rem;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    box-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+    -ms-flex-align: center; }
+    .cards form label > .name {
+      width: 25%; }
+    .cards form label > .name, .cards form label input {
+      font-size: 1.77689rem;
+      line-height: 2.36859rem;
+      -webkit-flex-shrink: 0;
+      -moz-flex-shrink: 0;
+      flex-shrink: 0;
+      -ms-flex-negative: 0; }
+  .cards form .buttons {
+    margin-top: 3rem; }
+  .cards .inputArea {
+    display: block; }
+  .cards .inputArea.buttonList {
+    margin-top: 8px; }
+    .cards .inputArea.buttonList .button {
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px; }
