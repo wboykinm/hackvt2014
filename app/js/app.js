@@ -90,7 +90,7 @@ angular.module('app', ['n3-line-chart'])
             title: 'Heat pump',
             chartOptions: {
               lineMode: 'basis',
-              tooltip: {mode: "none"},
+              tooltip: {mode: "scrubber"},
               axes: {
                 x: {
                   key: 'date_time',

@@ -242,6 +242,9 @@ a {
 text {
   font: inherit; }
 
+.scrubberItem {
+  display: none; }
+
 .fadeIn {
   opacity: 0;
   -webkit-transition: opacity 0.4s;
