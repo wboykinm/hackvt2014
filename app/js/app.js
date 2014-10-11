@@ -129,70 +129,106 @@ angular.module('app', ['n3-line-chart'])
         columnsHGap: 2,
         axes: {
           x: {
-            key: 'percentage',
+            key: 'percentile',
             type: 'linear'
           }
         },
-        series: [{
+        series: [/*{
           y: 'me',
           type: 'line',
           thickness: '3px',
           drawDots: false,
           label: 'My lights'
-        }, {
-          y: 'neighbors',
+        },*/ {
+          y: 'kwh',
           type: 'column',
           thickness: '15px',
           drawDots: false,
           label: 'My neighbors\' lights'
         }]
       },
-      chartData: [{
-        percentage: 0,
-        neighbors: 0
-      }, {
-        percentage: 10,
-        neighbors: (1+(Math.random()*10)/4)
-      }, {
-        percentage: 20,
-        neighbors: (16+(Math.random()*10)/4)
-      }, {
-        percentage: 30,
-        neighbors: (20+(Math.random()*10)/4)
-      }, {
-        percentage: 40,
-        neighbors: (15+(Math.random()*10)/4)
-      }, {
-        percentage: 50,
-        neighbors: (19+(Math.random()*10)/4)
-      }, {
-        percentage: 60,
-        neighbors: (14+(Math.random()*10)/4)
-      }, {
-        percentage: 70,
-        neighbors: (8+(Math.random()*10)/4)
-      }, {
-        percentage: 80,
-        neighbors: (4+(Math.random()*10)/4)
-      }, {
-        percentage: 90,
-        neighbors: (12+(Math.random()*10)/4)
-      }, {
-        percentage: 95,
-        neighbors: (2+(Math.random()*10)/4)
-      }, {
-        percentage: 100,
-        neighbors: 0
-      }, {
-        percentage: 63,
-        me: 0
-      }, {
-        percentage: 63.01,
-        me: 50
-      }, {
-        percentage: 63.01,
-        me: 0
-      }]
+      chartData: [
+        {
+          percentile:5,
+          kwh:1.641
+        },
+        {
+          percentile:10,
+          kwh:3.212
+        },
+        {
+          percentile:15,
+          kwh:4.359
+        },
+        {
+          percentile:20,
+          kwh:5.351
+        },
+        {
+          percentile:25,
+          kwh:6.287
+        },
+        {
+          percentile:30,
+          kwh:7.195
+        },
+        {
+          percentile:35,
+          kwh:8.106
+        },
+        {
+          percentile:40,
+          kwh:9.046
+        },
+        {
+          percentile:45,
+          kwh:9.941
+        },
+        {
+          percentile:50,
+          kwh:10.896
+        },
+        {
+          percentile:55,
+          kwh:11.918
+        },
+        {
+          percentile:60,
+          kwh:13.044
+        },
+        {
+          percentile:65,
+          kwh:14.277
+        },
+        {
+          percentile:70,
+          kwh:15.643
+        },
+        {
+          percentile:75,
+          kwh:17.205
+        },
+        {
+          percentile:80,
+          kwh:19.091
+        },
+        {
+          percentile:85,
+          kwh:21.541
+        },
+        {
+          percentile:90,
+          kwh:24.932
+        },
+        {
+          percentile:95,
+          kwh:31.146
+        },
+        {
+          percentile:100,
+          kwh:56.92
+        }
+      ]
     };
 
     $scope.view = 'main';
