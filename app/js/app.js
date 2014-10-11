@@ -30,7 +30,7 @@ angular.module('app', ['n3-line-chart'])
 
     $scope.currentUsageOptions = {
       lineMode: 'basis',
-      tooltip: {mode: "scrubber"},
+      tooltip: {mode: 'scrubber', formatter: function(x, y, series) {return y + ' Watts';}},
       axes: {
         x: {
           key: 'date_time',
@@ -125,8 +125,8 @@ angular.module('app', ['n3-line-chart'])
       },
       chartOptions: {
         lineMode: 'basis',
-        tooltip: {mode: "scrubber"},
-        columnsHGap: '2px',
+        tooltip: {mode: 'scrubber', formatter: function(x, y, series) {return y + ' kWh';}},
+        columnsHGap: 2,
         axes: {
           x: {
             key: 'percentage',
@@ -142,7 +142,7 @@ angular.module('app', ['n3-line-chart'])
         }, {
           y: 'neighbors',
           type: 'column',
-          thickness: '1px',
+          thickness: '15px',
           drawDots: false,
           label: 'My neighbors\' lights'
         }]
