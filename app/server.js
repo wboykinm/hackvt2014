@@ -65,6 +65,8 @@ var averageWeek = function(){
 
 var app = express();
 
+app.use(express.static('.'));
+
 app.get('/latest', function(req, res){
   latest().then(function(data){
     res.status(200).send(data);
