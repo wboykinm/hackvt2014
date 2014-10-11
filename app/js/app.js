@@ -30,7 +30,7 @@ angular.module('app', ['n3-line-chart'])
 
     $scope.currentUsageOptions = {
       lineMode: 'basis',
-      tooltip: {mode: 'scrubber', formatter: function(x, y, series) {return ($scope.circuits[series.y] || 'Entire home')+' '+y+'w';}},
+      tooltip: {mode: 'none'},
       axes: {
         x: {
           key: 'date_time',
@@ -85,30 +85,33 @@ angular.module('app', ['n3-line-chart'])
 
     $scope.$watch('now', function(now){
       if (now < new Date('7/25/2012')) {
-        $scope.anomaly = {
-          title: 'Heat pump',
-          chartOptions: {
-            lineMode: 'basis',
-            tooltip: {mode: "axes"},
-            axes: {
-              x: {
-                key: 'date_time',
-                type: 'date'
-              }
-            },
-            series: [{
-              y: 'hp',
-              thickness: '3px',
-              drawDots: false,
-              label: 'Current usage'
-            }, {
-              y: 'average_hp',
-              thickness: '1px',
-              drawDots: false,
-              label: 'Typical usage'
-            }]
-          }
-        };
+        if (typeof $scope.anomaly != 'object') {
+          $scope.anomaly = {
+            title: 'Heat pump',
+            chartOptions: {
+              lineMode: 'basis',
+              tooltip: {mode: "scrubber"},
+              axes: {
+                x: {
+                  key: 'date_time',
+                  type: 'date'
+                }
+              },
+              series: [{
+                y: 'hp',
+                thickness: '3px',
+                drawDots: false,
+                label: 'Current usage'
+              }, {
+                y: 'average_hp',
+                thickness: '1px',
+                drawDots: false,
+                label: 'Typical usage'
+              }]
+            }
+          };
+          window.dispatchEvent(new Event('resize'));
+        }
       } else {
         $scope.anomaly = false;
       }
