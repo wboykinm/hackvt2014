@@ -30,6 +30,7 @@
     </div>
   </section>
   <section layout="vertical flexible center" class="loading" ng-show="loading">
+    <i class="logo fa fa-spinner fa-spin"></i>
     <h3>Loading...</h3>
   </section>
   <section layout="vertical flexible center scroll" class="cards" ng-show="view == 'experiment'">
@@ -73,7 +74,7 @@
     </div>
   </section>
   <section layout="vertical flexible center scroll" class="cards slideIn" ng-class="{sliding: sliding}" ng-show="view == 'dashboard' && !loading">
-    <div class="card report" ng-repeat="exp in experiments">
+    <div class="card" ng-repeat="exp in experiments" ng-class="{report: !experimentReady(exp)}">
       <header>
         <h3>{{ exp.name }} experiment</h3>
         <h4>{{ timeSince(exp.started) }}</h4>
@@ -99,7 +100,7 @@
         <linechart data="currentUsage" options="currentUsageOptions" mode=""></linechart>
       </div>
     </div>
-    <div class="card" ng-show="anomaly">
+    <div class="card anomaly" ng-show="anomaly">
       <header>
         <h3><i class="fixed fa fa-exclamation"></i>Usage Anomaly</h3>
         <h4>{{ anomaly.title }}</h4>
@@ -108,7 +109,7 @@
         {{ anomaly.title }} load is much higher than usual today<br>
         <span style="font-style:italic">Did you leave a window open?</span>
       </p>
-      <div class="lineChart">
+      <div class="lineChart anomaly">
         <linechart data="todayUsage" options="anomaly.chartOptions" mode=""></linechart>
       </div>
     </div>

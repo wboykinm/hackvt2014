@@ -28,6 +28,11 @@ text {
   font: inherit;
 }
 
+.logo {
+  font-size: 144px;
+  margin-bottom: 4rem;
+}
+
 .scrubberItem {
   display: none;
 }
@@ -102,10 +107,6 @@ text {
   background: #f5f5f5;
 
   .card {
-    &.report {
-      background: mix($alertColor, #fff, 10%);
-    }
-    
     @include vertical(margin, 3rem);
     @include responsive-document(800px, 55%);
     @include depth(5);
@@ -115,6 +116,13 @@ text {
     header {
       @include display(flex);
       @include align-items(center);
+      margin-left: -3rem;
+      margin-top: -3rem;
+      margin-right: -3rem;
+      margin-bottom: 2rem;
+      padding: 2rem 3rem 2rem;
+      background: $meColor;
+      color: white;
 
       h3 {
         @include flex-grow(1);
@@ -124,6 +132,14 @@ text {
       h4 {
         @include perfect-fourth(3);
       }
+    }
+
+    &.report header {
+      background: #888;
+    }
+
+    &.anomaly header {
+      background: $accentColor;
     }
   }
 
@@ -217,10 +233,6 @@ text {
     @include transform(translateX(2000px));
   }
 
-  .logo {
-    font-size: 144px;
-    margin-bottom: 4rem;
-  }
   .button {
     margin: 2rem auto 0;
   }

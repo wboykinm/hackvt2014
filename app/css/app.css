@@ -242,6 +242,10 @@ a {
 text {
   font: inherit; }
 
+.logo {
+  font-size: 144px;
+  margin-bottom: 4rem; }
+
 .scrubberItem {
   display: none; }
 
@@ -403,8 +407,6 @@ text {
     box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.1), 0 16px 64px rgba(0, 0, 0, 0.2);
     padding: 3rem;
     background: #fff; }
-    .cards .card.report {
-      background: #f5fdff; }
     .cards .card:not(:first-child) {
       margin-top: 0; }
     @media (max-width: 800px) {
@@ -427,7 +429,14 @@ text {
       -ms-align-items: center;
       -o-align-items: center;
       align-items: center;
-      -ms-flex-align: center; }
+      -ms-flex-align: center;
+      margin-left: -3rem;
+      margin-top: -3rem;
+      margin-right: -3rem;
+      margin-bottom: 2rem;
+      padding: 2rem 3rem 2rem;
+      background: #00ab6f;
+      color: white; }
       .cards .card header h3 {
         -webkit-flex-grow: 1;
         -moz-flex-grow: 1;
@@ -452,6 +461,10 @@ text {
       .cards .card header h4 {
         font-size: 2.36859rem;
         line-height: 3.15733rem; }
+    .cards .card.report header {
+      background: #888; }
+    .cards .card.anomaly header {
+      background: #ffc300; }
   .cards.slideIn .card {
     -webkit-transform: translateY(2000px);
     -moz-transform: translateY(2000px);
@@ -548,8 +561,5 @@ text {
     -ms-transform: translateX(2000px);
     -o-transform: translateX(2000px);
     transform: translateX(2000px); }
-  .welcome.cards .card .logo {
-    font-size: 144px;
-    margin-bottom: 4rem; }
   .welcome.cards .card .button {
     margin: 2rem auto 0; }
