@@ -16,7 +16,7 @@
       </div>
       <div layout="block grow"></div>
       <div layout="fixed horizontal">
-        <button class="button bordered">button</button>
+        <button class="button bordered" ng-click="experiment()">Experiment</button>
       </div>
     </div>
   </header>
@@ -24,10 +24,21 @@
     <div class="card">
       <header>
         <h3>Current usage</h3>
-        <h4>{{ currentUsage.slice(-1)[0].main }} watts</h4>
+        <h4>{{ currentUsage.slice(-1)[0].main | number }} watts</h4>
       </header>
       <div class="lineChart">
         <linechart data="currentUsage" options="currentUsageOptions" mode="thumbnail"></linechart>
+      </div>
+    </div>
+    <div class="card">
+      <header>
+        <h3>Usage Anomaly</h3>
+        <h4>{{ anomaly.title }}</h4>
+      </header>
+      <p>{{ anomaly.title }} load is much higher than usual</p>
+      <p style="font-style: italic">Did you leave a window open?</p>
+      <div class="lineChart">
+        <linechart data="todayUsage" options="anomaly.chartOptions" mode=""></linechart>
       </div>
     </div>
   </section>
