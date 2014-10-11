@@ -1,10 +1,6 @@
 var express = require('express');
 var knex = require('knex');
-
-var db = knex({
-  client: 'pg',
-  connection: 'postgres://tristan:@127.0.0.1/hackvt'
-});
+var db = require('./db');
 
 var formatRow = function(row){
   var out = {};
