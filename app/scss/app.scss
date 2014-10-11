@@ -21,6 +21,7 @@ body {
 .button {
   @include button(1rem 2rem, $primaryColor);
   border-radius: 2px;
+  @include perfect-fourth(1);
 
   .accent & {
     @include button-color($accentColor);
