@@ -9,7 +9,7 @@
 </head>
 <body layout="vertical fullbleed">
 
-  <header layout="fixed vertical center">
+  <header id="header" layout="fixed vertical center">
     <div layout="horizontal center" class="header">
       <div layout="block fixed">
         <h1>My Energy</h1>
@@ -22,20 +22,13 @@
   </header>
   <section layout="vertical flexible center scroll" class="cards" ng-controller="main">
     <div class="card">
-      <h3>Current usage</h3>
-      <linechart data="currentUsage" options="chartOptions" mode="" style="height:400px"></linechart>
-    </div>
-    <div class="card">
-      <h3>Solar generation</h3>
-      <p>you - 800w</p>
-      <p>your neighborhood - 12kw</p>
-      <p>your town - 142kw</p>
-    </div>
-    <div class="card">
-      <h3>Rate</h3>
-      <p>You are getting paid 6 cents an hour</p>
-      <p>Your neighbors are paying 8 cents an hour</p>
-      <p></p>
+      <header>
+        <h3>Current usage</h3>
+        <h4>{{ currentUsage.slice(-1)[0].main }} watts</h4>
+      </header>
+      <div class="lineChart">
+        <linechart data="currentUsage" options="currentUsageOptions" mode="thumbnail"></linechart>
+      </div>
     </div>
   </section>
 

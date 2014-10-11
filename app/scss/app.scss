@@ -30,7 +30,7 @@ body {
   }
 }
 
-header {
+#header {
   background: $primaryColor;
   color: #fff;
   position: relative;
@@ -57,5 +57,16 @@ header {
     @include depth(1);
     padding: 3rem;
     background: #fff;
+
+    header {
+      @include display(flex);
+      h3 {
+        @include flex-grow(1);
+      }
+    }
+  }
+
+  .lineChart {
+    height: 400px;
   }
 }
