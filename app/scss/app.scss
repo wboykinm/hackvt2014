@@ -109,10 +109,15 @@ text {
 
     header {
       @include display(flex);
+      @include align-items(center);
+
       h3 {
         @include flex-grow(1);
         @include display(flex);
         @include align-items(center);
+      }
+      h4 {
+        @include perfect-fourth(3);
       }
     }
   }

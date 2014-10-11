@@ -76,7 +76,7 @@
     <div class="card report" ng-repeat="exp in experiments">
       <header>
         <h3>{{ exp.name }} experiment</h3>
-        <p>{{ timeSince(exp.started) }}</p>
+        <h4>{{ timeSince(exp.started) }}</h4>
       </header>
       <p ng-hide="experimentReady(exp)">
         Looking for patterns, check back later
