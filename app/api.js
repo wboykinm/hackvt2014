@@ -1,3 +1,4 @@
+// Day 0 = 2014-7-20
 var apiSpec = {
   currentUsage: {
     me: [1.0, 1.1, 1.2, 1.3],
